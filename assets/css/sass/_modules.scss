@@ -1,0 +1,118 @@
+/* ==========================================================================
+    Modules
+   ========================================================================== */
+
+/*
+ *  Common
+ */
+.main a,
+.main a:visited {
+    color: #773BB4;
+}
+.main a:hover,
+.main a:focus,
+.main a:active {
+    color: #000;
+}
+.small {
+    color: #777;
+    font: teq-em(14) sans-serif;
+}
+
+
+/*
+ *  Header
+ */
+.header {
+    background: #773BB4 url("../images/bg-eye-candy.png");
+    color: #fff;
+}
+.brand {
+    padding: 70px 0 10px;
+}
+.brand p {
+    font-family: $font-100;
+    font-weight: 300;
+    font-size: teq-em(26);
+}
+
+/* === Navbar === */
+.navbar {
+    background: #000;
+    text-align: right;
+}
+.nav,
+.logo {
+    @include teq-inline-block;
+    vertical-align: middle;
+}
+.nav {
+    height: 65px;
+    line-height: 65px;
+    margin: 0;
+}
+.nav > li {
+    height: 100%;
+}
+.nav > li > a {
+    color: #B3B3B3;
+    display: block;
+    font: teq-em(14) sans-serif;
+    height: 100%;
+    padding: 0 0 0 30px;
+    text-transform: uppercase;
+    &:hover {
+        color: #fff;
+    }
+}
+
+.logo {
+    display: block;
+    float: left;
+    height: 100%;
+    margin: 0;
+    padding: 10px 0;
+    vertical-align: top;
+    width: auto;
+}
+
+
+/*
+ *  Footer
+ */
+.footer {
+    border-top: 1px solid #eee;
+    margin: 30px 0;
+    padding: 20px 0 0;
+}
+
+
+/*
+ *  Repo-list
+ */
+.repolist {
+    margin: 0;
+    padding: 0;
+}
+.repolist > li {
+    list-style: none;
+    margin: 0 0 50px;
+}
+.repolist-name {
+    margin: 0;
+}
+.description,
+.updated-at {
+    margin: 5px 0 0;
+}
+
+
+/*
+ *  Members-list
+ */
+.members-list > li {
+    margin: 5px 1%;
+}
+.gravatar {
+    border-radius: 32px;
+}

@@ -1,0 +1,23 @@
+@charset "UTF-8"; // Forcer charset sur Windows
+
+/* ==========================================================================
+    Non-responsive styles
+   ========================================================================== */
+$media-queries: false;
+$oldie: true;
+@import "main";
+
+
+
+
+
+/* ==========================================================================
+    Overrides and specific styles for old IE
+   ========================================================================== */
+/*  
+Non-prefixed rules for <= ie8, * prefixed rules for <= ie7
+.example {
+    background: blue;
+    *background: red;
+}
+*/ 

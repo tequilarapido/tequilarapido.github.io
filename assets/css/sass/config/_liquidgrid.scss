@@ -1,0 +1,61 @@
+// Liquid Grid
+// Version: 0.1
+// Author: Hinerangi Courtenay - @sky_maiden
+// Description: A lightweight fluid grid generator inspired by responsivegridsystem.com
+// License: http://skymaiden.mit-license.org/2013
+
+// Usage: Include the setupGrid mixin once, then include the makeGrid mixin as many 
+//        times as needed to generate column widths. Mixin parameters are optional and
+//        default to 12 columns with gutters of 2%.
+//        Generates classes like .col_1-5 and .offset_1-5
+
+
+$numCols: 12 !default;
+$widthGutter: 2 !default;
+
+@mixin setupGrid($gutter: $widthGutter) {
+    // Contain floated columns
+    .l-row:before,
+    .l-row:after {
+        content: " ";
+        display: table;
+    }
+    .l-row:after {
+        clear: both;
+    }
+    .l-row {
+        *zoom: 1;
+    }
+
+    // Float columns
+    .l-col {
+        float: left;
+        width: 100%;
+        @include teq-breakpoint($medium) {
+            margin: 0 0 0 ($gutter + 0%);
+        }
+    }
+    .l-col:first-child {
+        margin-left: 0;
+    }
+}
+
+@mixin makeGrid($cols: $numCols, $gutter: $widthGutter) {
+    $colWidth: (100 - ( $gutter * ($cols - 1) ) ) / $cols;
+
+    @include teq-breakpoint($medium) {
+        // Generate .col_#-# classes
+        @for $i from 1 through ($cols - 1) {
+            .l-span_#{$i}-#{$cols} {
+                width: ( ($i * $colWidth) + ($gutter * ($i - 1)) ) + 0%;
+            }
+        }
+
+        // Generate .offset_#-# classes
+        @for $i from 1 through ($cols - 1) {
+            .l-row .l-offset_#{$i}-#{$cols} {
+                margin-left: percentage($i / $cols);
+            }
+        }
+    }
+}

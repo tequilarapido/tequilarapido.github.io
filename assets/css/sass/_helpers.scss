@@ -1,0 +1,279 @@
+/* ==========================================================================
+    Helpers & Objects
+   ========================================================================== */
+
+/* ==============================
+    Helper classes
+   ============================== */
+
+/*
+ * Clearfix
+ */
+.clearfix {
+    &:before,
+    &:after {
+        content: " ";
+        display: table;
+    }
+    &:after {
+        clear: both;
+    }
+    @include teq-oldie {
+        *zoom: 1;
+    }
+}
+
+
+/*
+ * Image replacement
+ */
+.ir {
+    background-color: transparent;
+    border: 0;
+    overflow: hidden;
+    @include teq-oldie {
+        *text-indent: -9999px;  
+    }
+
+    &:before {
+        content: "";
+        display: block;
+        width: 0;
+        height: 100%;
+    }
+}
+
+.hidden {
+    display: none;
+    visibility: hidden;
+}
+
+.visuallyhidden {
+    border: 0;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+
+    &.focusable:active,
+    &.focusable:focus {
+        clip: auto;
+        height: auto;
+        margin: 0;
+        overflow: visible;
+        position: static;
+        width: auto;
+    }
+}
+
+.invisible {
+    visibility: hidden;
+}
+
+
+//
+// PIE
+//
+//%pie {
+//    behavior: url(assets/js/libs/pie/PIE.htc);
+//}
+//%pie-rel {
+//    @extend %pie;
+//    position: relative;
+//}
+
+
+//
+// Automatic hyphens for justified text
+//
+%auto-hyphens {
+    -webkit-hyphens: auto;
+    -moz-hyphens: auto;
+    -ms-hyphens: auto;
+    -o-hyphens: auto;
+    hyphens: auto;
+}
+
+
+//
+// Avoid long text breaking out of containers
+//
+%prevent-text-breakouts {
+    -ms-word-break: break-all;
+    word-break: break-all;
+    word-break: break-word;
+    -webkit-hyphens: auto;
+    -moz-hyphens: auto;
+    hyphens: auto;
+}
+
+
+/*
+ *  Text
+ */
+.text-right {
+    text-align: right;
+}
+.text-center {
+    text-align: center;
+}
+.no-bullets {
+    list-style: none;
+    padding-left: 0;
+}
+
+
+/*
+ *  Blocks
+ */
+.center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+.right {
+    float: right;
+}
+.left {
+    float: left;
+}
+.block {
+    display: block;
+}
+.inline-block {
+    @include teq-inline-block;
+}
+.valign-mid {
+    vertical-align: middle;
+}
+.relative {
+    position: relative;
+}
+
+
+/*
+ *  Padding and margins
+ */
+.soft       { padding: 10px!important; }
+.soft-t     { padding-top: 10px!important; }
+.soft-r     { padding-right: 10px!important; }
+.soft-b     { padding-bottom:10px!important; }
+.soft-l     { padding-left: 10px!important; }
+.soft-ends  { padding-top: 10px!important; padding-bottom:10px!important; }
+.soft-sides { padding-right: 10px!important; padding-left: 10px!important; }
+
+.hard       { padding: 0!important; }
+.hard-t     { padding-top: 0!important; }
+.hard-r     { padding-right: 0!important; }
+.hard-b     { padding-bottom:0!important; }
+.hard-l     { padding-left: 0!important; }
+.hard-ends  { padding-top: 0!important; padding-bottom:0!important; }
+.hard-sides { padding-right: 0!important; padding-left: 0!important; }
+
+.gap         { margin: 10px!important; }
+.gap-t       { margin-top: 10px!important; }
+.gap-r       { margin-right: 10px!important; }
+.gap-b       { margin-bottom: 10px!important; }
+.gap-l       { margin-left: 10px!important; }
+.gap-ends    { margin-top: 10px!important; margin-bottom: 10px!important; }
+.gap-sides   { margin-right: 10px!important; margin-left: 10px!important; }
+
+.nogap       { margin: 0!important; }
+.nogap-t     { margin-top: 0!important; }
+.nogap-r     { margin-right: 0!important; }
+.nogap-b     { margin-bottom: 0!important; }
+.nogap-l     { margin-left: 0!important; }
+.nogap-ends  { margin-top: 0!important; margin-bottom: 0!important; }
+.nogap-sides { margin-right: 0!important; margin-left: 0!important; }
+
+
+
+/* ==============================
+    Objects & abstractions
+   ============================== */
+  
+/*
+ *  Media object
+ *
+    <div class="media">
+        <img class="media-img" src="http://placehold.it/100x100" alt="User avatar" />
+        <p class="media-bd">Praesent eu libero porta risus imperdiet vitae.</p>
+    </div>
+ */
+.media,
+.media-bd {
+    overflow: hidden;
+    @include teq-oldie {
+        *overflow: visible;
+        *zoom:1;
+    }
+}
+.media-img {
+    float: left;
+}
+.media-img-rev {
+    float:right;
+}
+.media-img img,
+.media-img-rev img {
+    display:block;
+}
+
+
+/*
+ * Caret
+ *
+    <i class="caret caret-down"></i>
+ */
+.caret {
+    content: "";
+    height: 0;
+    vertical-align: top;
+    width: 0;
+    @include teq-inline-block;
+}
+.caret-down,
+.caret-up {
+    border-left: 4px solid transparent;
+    border-right: 4px solid transparent;
+}
+.caret-down {
+    border-top: 4px solid #000;
+}
+.caret-up {
+    border-bottom: 4px solid #000;
+}
+.caret-right,
+.caret-left {
+    border-bottom: 4px solid transparent;
+    border-top: 4px solid transparent;
+}
+.caret-right {
+    border-left: 4px solid #000;
+}
+.caret-left {
+    border-right: 4px solid #000;
+}
+
+
+/*
+ *  Horizontal list
+ *
+    <ul class="hlist">
+        <li>One</li>
+        <li>Two</li>
+        <li>Three</li>
+    </ul>
+ */
+.hlist {
+    @extend .clearfix;
+    list-style: none;
+    margin-left: 0;
+    
+    > li {
+        @include teq-inline-block;
+    }
+}

@@ -1,0 +1,90 @@
+/* ==========================================================================
+    Default element styles
+   ========================================================================== */
+html,
+button,
+input,
+select,
+textarea {
+    color: #222;
+}
+body {
+    background: #fff;
+    color: #222;
+    font: 1em sans-serif;
+    line-height: 1.4;
+}
+img {
+    vertical-align: middle;
+}
+hr {
+    background: #ddd;
+    border: 0 none;
+    margin: 3% 0;
+    height: 1px;
+}
+
+
+/* ==============================
+    Typography
+   ============================== */
+/* "-like" classes should be used to maintain the semantically appropriate heading levels - NOT for use on non-headings */
+h1, .h1-like {
+    font: teq-em(36) $font-700;
+    font-weight: 700;
+}
+h2, .h2-like {
+    font: teq-em(30) $font-700;
+    font-weight: 700;
+}
+h3, .h3-like {
+    font: teq-em(24) $font-700;
+    font-weight: 700;
+}
+p, li {
+
+}
+p {
+
+}
+a,
+a:visited {
+    text-decoration: none;
+}
+a:hover,
+a:focus,
+a:active {
+
+}
+hr {
+    background: none;
+    border-top: 1px dotted #333;
+}
+
+
+/* ==============================
+    Forms
+   ============================== */
+fieldset {
+    border: 0;
+    margin: 0;
+    padding: 0;
+}
+textarea {
+    resize: vertical;
+}
+::-webkit-input-placeholder {
+    color: #555;
+}
+:-moz-placeholder { /* Firefox 18- */
+    color: #555;
+}
+::-moz-placeholder {  /* Firefox 19+ */
+    color: #555;
+}
+:-ms-input-placeholder {
+    color: #555;
+}
+.placeholder {
+    color: #555;
+}

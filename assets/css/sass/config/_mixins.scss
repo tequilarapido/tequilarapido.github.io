@@ -1,0 +1,134 @@
+// ==========================================================================
+//  Mixins & Functions
+// ==========================================================================
+
+// Styles for IE8 & IE7
+// $oldie = true in oldie.scss
+//      .example {
+//          background: green;
+//          @include oldie {
+//              background: orange; // <= IE8
+//              *background: red;   // <= IE7
+//          }
+//      }
+$oldie: false !default;
+@mixin teq-oldie {
+    @if $oldie {
+        @content;
+    }
+}
+
+
+// Inline block
+@mixin teq-inline-block {
+    display: inline-block;
+    @include teq-oldie {
+        *display: inline;
+        *zoom: 1;
+    }
+}
+
+
+@mixin teq-boxsizing {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    @include teq-oldie {
+        *behavior: url('../js/libs/boxsizing.htc');
+    }
+}
+
+
+// Cross-browser opacity
+@mixin teq-opacity($opacity) {
+    @include teq-oldie {
+	    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=" + $opacity + ")";
+        *filter: alpha(opacity=$opacity);
+    }
+    opacity: $opacity / 100;
+}
+
+
+// Calculate font size in ems
+@function teq-em($target, $context: 16) {
+    @return ($target / $context) * 1em;
+}
+
+// Calculate widths in %
+@function teq-perc($target, $context: 980) {
+    @return percentage($target / $context);
+}
+
+
+
+// Use media queries and automatically generate specific css for ie7/ie8
+// Inspired by https://github.com/nex3/sass/issues/408#issuecomment-6086901
+$small:  30em !default; // ≈ 480px
+$medium: 48em !default; // ≈ 768px
+$large:  60em !default; // ≈ 960px
+$wide:   75em !default; // ≈ 1200px
+
+$max-desktop: $large !default;
+
+$media-queries: true !default; // true by default
+
+@mixin teq-breakpoint($min-width: false, $max-width: false, $prefix: false) {
+    @if $media-queries {
+        @if $min-width {
+            @media all and (min-width: $min-width) {
+                @if $max-width {
+                    @media (max-width: $max-width) {
+                        @if $prefix {
+                            #{"." + $prefix} {
+                                @content;
+                            }
+                        } @else {
+                            @content;
+                        }
+                    }
+                } @else {
+                    @if $prefix {
+                        #{"." + $prefix} {
+                            @content;
+                        }
+                    } @else {
+                        @content;
+                    }
+                }
+            }
+        } @else if $max-width {
+            @media all and (max-width: $max-width) {
+                @if $prefix {
+                    #{"." + $prefix} {
+                        @content;
+                    }
+                } @else {
+                    @content;
+                }
+            }
+        }
+    }
+    @else if $min-width and $min-width <= $max-desktop and
+      (not $max-width or $max-width and $max-width >= $max-desktop) {
+        @content;
+    }
+}
+
+
+// Retina/HD images
+@mixin teq-retina($file: false, $type: "png") {
+    $image:     #{$file + "." + $type};
+    $image2x:   #{$file + "_2x." + $type};
+
+    @if $media-queries {
+        @media only screen and (-webkit-min-device-pixel-ratio: 1.5),
+        only screen and (min-resolution: 144dpi) {
+            @if $file {
+                background-image: image-url($image2x);
+                background-size:  image-width($image) image-height($image);
+            }
+
+            @content;
+        }
+    }
+}
